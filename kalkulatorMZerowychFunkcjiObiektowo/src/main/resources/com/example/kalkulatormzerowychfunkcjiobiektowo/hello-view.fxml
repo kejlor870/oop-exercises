@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" fillWidth="true" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kalkulatormzerowychfunkcjiobiektowo.KalkulatorController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Label text="Kalkulator miejsc zerowych wielomianu kwadratowego">
+      <font>
+         <Font name="System Bold" size="17.0" />
+      </font></Label>
+   <VBox alignment="TOP_CENTER" spacing="8.0">
+      <children>
+         <HBox alignment="TOP_CENTER" spacing="5.0">
+            <children>
+               <Label text="A:" />
+               <TextField fx:id="poleA" />
+            </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </HBox>
+         <HBox alignment="TOP_CENTER" spacing="5.0">
+            <children>
+               <Label text="B:" />
+               <TextField fx:id="poleB" />
+            </children>
+         </HBox>
+         <HBox alignment="TOP_CENTER" spacing="5.0">
+            <children>
+               <Label text="C:" />
+               <TextField fx:id="poleC" />
+            </children>
+         </HBox>
+      </children>
+   </VBox>
+   <Label fx:id="labelWynik" alignment="CENTER" maxWidth="Infinity" style="-fx-background-color: #eeeeee; -fx-padding: 10; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;" text="Tutaj pojawi sie wynik" textAlignment="CENTER">
+      <padding>
+         <Insets top="5.0" />
+      </padding>
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+    <Button onAction="#oblicz" text="Oblicz">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets></Button>
+</VBox>
