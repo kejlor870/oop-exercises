@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.KalkulatorElektryczny.MainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label text="Kalkulator Elektryczny" textAlignment="CENTER">
+        <font>
+            <Font name="System Bold" size="18.0" />
+        </font>
+    </Label>
+
+    <ComboBox fx:id="typComboBox" onAction="#onTypObliczeniaChanged" promptText="Wybierz typ obliczenia" />
+
+    <VBox alignment="CENTER" prefWidth="100.0" spacing="10.0">
+        <children>
+         <VBox fx:id="inputSection1" prefWidth="100.0">
+            <children>
+               <Label fx:id="label1" text="Pole 1" />
+                  <TextField fx:id="pole1" style="visibility: visible;" />
+            </children>
+         </VBox>
+         <VBox fx:id="inputSection2" layoutX="10.0" layoutY="10.0" prefWidth="100.0">
+            <children>
+               <Label fx:id="label2" text="Pole 2" />
+               <TextField fx:id="pole2" style="visibility: visible;" />
+            </children>
+         </VBox>
+         <VBox fx:id="inputSection3" layoutX="10.0" layoutY="62.0" prefWidth="100.0">
+            <children>
+               <Label fx:id="label3" text="Pole 3" />
+               <TextField fx:id="pole3" style="visibility: visible;" />
+            </children>
+         </VBox>
+        </children>
+    </VBox>
+
+    <Button text="Oblicz" onMouseClicked="#onObliczClick"/>
+
+    <Label fx:id="wynikLabel" text="Wybierz operację z listy powyżej." />
+</VBox>
