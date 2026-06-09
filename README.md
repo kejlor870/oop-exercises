@@ -43,18 +43,6 @@ The application uses the **Factory Design Pattern** to handle dynamic object cre
 
 ---
 
-## 🛠 Technologies Used in This Repository
-
-- Java
-- JavaFX
-- Spring Boot
-- Jackson
-- Maven
-- Object-Oriented Programming (OOP)
-- IntelliJ IDEA
-
----
-
 ### 📁 02 - [KalkulatorElektryczny](https://github.com/kejlor870/oop-exercises/tree/main/KalkulatorElektryczny) (JavaFX)
 
 A JavaFX desktop application designed to perform various electrical calculations based on Ohm's Law and electrical power formulas (computing Voltage, Current, Resistance, and Power).
@@ -68,6 +56,18 @@ A JavaFX desktop application designed to perform various electrical calculations
 - FXML
 - Maven
 - OOP principles
+
+---
+
+## 🛠 Technologies Used in This Repository
+
+- Java
+- JavaFX
+- Spring Boot
+- Jackson
+- Maven
+- Object-Oriented Programming (OOP)
+- IntelliJ IDEA
 
 ---
 
