@@ -24,7 +24,7 @@ JavaFX application that calculates roots of a quadratic function based on coeffi
 
 ---
 
-### 📁 02 - [FabrykaUrzadzenWeb](https://github.com/kejlor870/oop-exercises/tree/main/FabrykaUrzadzenWeb-SpringBoot) (Spring Boot)
+### 📁 03 - [FabrykaUrzadzenWeb](https://github.com/kejlor870/oop-exercises/tree/main/FabrykaUrzadzenWeb-SpringBoot) (Spring Boot)
 
 A web application built with Spring Boot that simulates an electrical device factory and registry (handling light bulbs, engines, and heaters).
 
@@ -55,6 +55,22 @@ The application uses the **Factory Design Pattern** to handle dynamic object cre
 
 ---
 
+### 📁 02 - [KalkulatorElektryczny](https://github.com/kejlor870/oop-exercises/tree/main/KalkulatorElektryczny) (JavaFX)
+
+A JavaFX desktop application designed to perform various electrical calculations based on Ohm's Law and electrical power formulas (computing Voltage, Current, Resistance, and Power).
+
+**Folder:** `KalkulatorElektryczny/`
+
+#### Technologies
+
+- Java
+- JavaFX
+- FXML
+- Maven
+- OOP principles
+
+---
+
 ## 🎯 Purpose of the Repository
 
 The goal of this repository is to:
@@ -68,5 +84,3 @@ The goal of this repository is to:
 - Implement creational design patterns (Factory Pattern)
 - Learn proper project structure and data serialization
 - Use Git and GitHub in practical software development workflows
-
----
