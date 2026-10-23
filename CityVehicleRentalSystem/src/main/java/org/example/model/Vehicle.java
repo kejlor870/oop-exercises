@@ -1,6 +1,8 @@
 package org.example.model;
 
-public abstract class Vehicle {
+import org.example.interfaces.Rentable;
+
+public abstract class Vehicle implements Rentable {
     private final int id;
     private final String brand;
     private final String model;
@@ -30,10 +32,12 @@ public abstract class Vehicle {
         return hourlyRate;
     }
 
+    @Override
     public boolean isAvailable() {
         return available;
     }
 
+    @Override
     public void rent(){
         if(this.available){
             this.available = false;
@@ -43,6 +47,7 @@ public abstract class Vehicle {
         }
     }
 
+    @Override
     public void returnVehicle(){
         if(!this.available){
             this.available = true;

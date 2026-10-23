@@ -7,16 +7,13 @@ import org.example.model.Vehicle;
 
 public class VehicleFactory {
 
-    public static Vehicle createVehicle(String type, int id, String brand, String model){
+    public static Vehicle createVehicle(VehicleType type, int id, String brand, String model){
 
-        if("bicycle".equals(type)){
-            return new Bicycle(id, brand, model);
-        } else if ("car".equals(type)) {
-            return new Car(id, brand, model);
-        } else if ("scooter".equals(type)) {
-            return new ElectricScooter(id, brand, model);
-        } else {
-            throw new IllegalArgumentException("Blad utworzenia pojazdu: Podano bledny typ.");
-        }
+        return switch (type) {
+            case BICYCLE -> new Bicycle(id, brand, model);
+            case CAR -> new Car(id, brand, model);
+            case SCOOTER -> new ElectricScooter(id, brand, model);
+            default -> throw new IllegalArgumentException("Blad utworzenia pojazdu: Podano bledny typ.");
+        };
     }
 }
