@@ -22,16 +22,7 @@ public class Main {
         rentalService.addVehicle(car);
 
         // Display available vehicles
-        List<Vehicle> availbleVehicles = rentalService.getAvailableVehicles();
-
-        System.out.println("\tDostepne pojazdy: ");
-        for(Vehicle vehicle : availbleVehicles){
-            System.out.println(
-                    vehicle.getId() + " | " +
-                    vehicle.getBrand() + " | " +
-                    vehicle.getModel()
-            );
-        }
+        displayAvailableVehicles(rentalService);
 
         // Rent bicycle
         double rentCost = rentalService.rentVehicle(1, 3);
@@ -67,30 +58,27 @@ public class Main {
         }
 
         // Display available vehicles once again
-        availbleVehicles = rentalService.getAvailableVehicles();
-
-        System.out.println("\n\tDostepne pojazdy: ");
-        for(Vehicle vehicle : availbleVehicles){
-            System.out.println(
-                vehicle.getId() + " | " +
-                vehicle.getBrand() + " | " +
-                vehicle.getModel()
-            );
-        }
+        displayAvailableVehicles(rentalService);
 
         // Return bicycle
         rentalService.returnVehicle(1);
 
         // Display available vehicles once again
-        availbleVehicles = rentalService.getAvailableVehicles();
+        displayAvailableVehicles(rentalService);
+    }
 
-        System.out.println("\n\tDostepne pojazdy: ");
+    // Method to display available vehicles from rentalService
+    private static void displayAvailableVehicles(RentalService rentalService){
+        List<Vehicle> availbleVehicles = rentalService.getAvailableVehicles();
+
+        System.out.println("\tDostepne pojazdy: ");
         for(Vehicle vehicle : availbleVehicles){
             System.out.println(
-                vehicle.getId() + " | " +
-                vehicle.getBrand() + " | " +
-                vehicle.getModel()
+                    vehicle.getId() + " | " +
+                            vehicle.getBrand() + " | " +
+                            vehicle.getModel()
             );
         }
     }
 }
+

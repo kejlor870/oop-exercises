@@ -10,6 +10,12 @@ public abstract class Vehicle implements Rentable {
     private boolean available = true;
 
     public Vehicle(int id, String brand, String model, double hourlyRate){
+        // Validation
+        if(id < 0) throw new IllegalArgumentException("ID musi być większe od zera.");
+        if(brand == null || brand.isBlank()) throw new IllegalArgumentException("Marka nie może być pusta.");
+        if(model == null || model.isBlank()) throw new IllegalArgumentException("Model nie może być pusty.");
+        if(!Double.isFinite(hourlyRate) || hourlyRate <= 0.0) throw new IllegalArgumentException("Cena musi być dodatnia i skończona.");
+
         this.id = id;
         this.brand = brand;
         this.model = model;
