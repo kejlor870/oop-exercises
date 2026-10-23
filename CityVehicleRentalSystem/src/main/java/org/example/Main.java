@@ -39,6 +39,13 @@ public class Main {
         System.out.println("Oplata za wyporzyczenie: " + rentCost);
 
         // Exceptions test
+        //  Try to add new vehicle with already existing ID
+        try{
+            rentalService.addVehicle(new Car(3, "Toyota", "Supra"));
+        } catch (IllegalArgumentException e){
+            System.out.println("Blad dodania pojazdu: " + e.getMessage());
+        }
+
         //  Try rent already rented bicycle
         try{
             rentalService.rentVehicle(1, 4);

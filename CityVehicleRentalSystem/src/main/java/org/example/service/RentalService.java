@@ -10,6 +10,13 @@ public class RentalService {
 
     // Method to add new vehicle to list
     public void addVehicle(Vehicle vehicle){
+        // Prevent adding vehicle with existing ID
+        for(Vehicle existVehicle : vehiclesList){
+            if(existVehicle.getId() == vehicle.getId()){
+                throw new IllegalArgumentException("Pojazd o podanym id juz istnieje");
+            }
+        }
+
         vehiclesList.add(vehicle);
     }
 
