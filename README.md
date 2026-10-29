@@ -59,15 +59,42 @@ A JavaFX desktop application designed to perform various electrical calculations
 
 ---
 
+### 📁 04 - [CityVehicleRentalSystem](https://github.com/kejlor870/oop-exercises/tree/main/CityVehicleRentalSystem) (Java)
+
+A console-based vehicle rental application that simulates a city vehicle rental service for bicycles, electric scooters, and cars.
+
+The application allows users to create vehicles using the **Factory Design Pattern**, display available vehicles, rent and return vehicles, and calculate rental costs based on vehicle type. It also includes vehicle data validation, duplicate ID prevention, and exception handling.
+
+**Folder:** `CityVehicleRentalSystem/`
+
+#### Technologies
+
+- Java
+- Maven
+- OOP principles
+- Encapsulation, Inheritance, and Polymorphism
+- Abstract Classes and Interfaces
+- Factory Design Pattern
+- Enums and Java Collections
+- Exception handling and input validation
+
+---
+
 ## 🛠 Technologies Used in This Repository
 
 - Java
 - JavaFX
+- FXML
 - Spring Boot
 - Jackson
 - Maven
 - Object-Oriented Programming (OOP)
+- Factory Design Pattern
+- Java Collections
+- Interfaces and enums
+- Exception handling and input validation
 - IntelliJ IDEA
+- Git and GitHub
 
 ---
 
@@ -77,10 +104,15 @@ The goal of this repository is to:
 
 - Practice object-oriented programming concepts:
   - encapsulation
+  - inheritance
   - polymorphism
+  - abstraction
   - interfaces
 - Build Java desktop applications using JavaFX
 - Build Java web applications and REST APIs using Spring Boot
 - Implement creational design patterns (Factory Pattern)
-- Learn proper project structure and data serialization
+- Practice Java Collections and enum types
+- Learn exception handling and input validation
+- Learn proper project structure and separation of responsibilities
+- Practice data serialization and JSON handling
 - Use Git and GitHub in practical software development workflows
