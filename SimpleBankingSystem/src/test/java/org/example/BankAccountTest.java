@@ -3,6 +3,8 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BankAccountTest {
@@ -106,6 +108,43 @@ public class BankAccountTest {
         // Assert
         assertTrue(result);
         assertEquals(0.0, account.getBalance(), 0.001);
+    }
+
+    // ############## Transactions history tests ##############
+
+    @Test
+    void testDepositCreatesCorrectTransactionObject(){
+        // Arange
+        double depositAmount = 200.33;
+
+        // Act
+        account.deposit(depositAmount); // Deposit amount
+        List<Transaction> history = account.getTransactionHistory(); // Get account transaction history List
+
+        Transaction firstTransaction = history.getFirst(); // Get first transaction object
+
+        // Assert
+        assertEquals(1, history.size());    // Saved 1 transaction in history
+        assertEquals(TransactionType.DEPOSIT, firstTransaction.getType());  // Saved transactionType is DEPOSIT
+        assertEquals(200.33, firstTransaction.getAmount(), 0.001);  // Saved transaction amount equals provided
+    }
+
+    @Test
+    void testWithdrawCreatesCorrectTransactionObject(){
+        // Arange
+        account.deposit(200.33);    // First transaction - DEPOSIT
+        double amountToWithdraw = 50.0;
+
+        // Act
+        account.withdraw(amountToWithdraw); // Second transaction - WITHDRAW
+        List<Transaction> history = account.getTransactionHistory();
+
+        Transaction secondTransaction = history.get(1);
+
+        // Assert
+        assertEquals(2, history.size());
+        assertEquals(TransactionType.WITHDRAW, secondTransaction.getType());
+        assertEquals(50.0, secondTransaction.getAmount(), 0.001);
     }
 
 }
