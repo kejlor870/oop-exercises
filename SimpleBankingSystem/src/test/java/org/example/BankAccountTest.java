@@ -110,6 +110,14 @@ public class BankAccountTest {
         assertEquals(0.0, account.getBalance(), 0.001);
     }
 
+    @Test
+    void testConstructorRejectsBlankOwner(){
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new BankAccount("   ")
+        );
+    }
+
     // ############## Transactions history tests ##############
 
     @Test

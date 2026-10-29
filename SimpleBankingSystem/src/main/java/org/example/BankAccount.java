@@ -6,11 +6,14 @@ import java.util.List;
 public class BankAccount {
     private final String owner;
     private double balance = 0;
-    private List<Transaction> transactionHistory;
+    private final List<Transaction> transactionHistory = new ArrayList<>();
 
     public BankAccount(String owner){
+        if(owner == null || owner.isBlank()){
+            throw new IllegalArgumentException("Owner name cannot be null or blank");
+        }
+
         this.owner = owner;
-        this.transactionHistory = new ArrayList<>();
     }
 
     // Method to get owner name
@@ -25,7 +28,7 @@ public class BankAccount {
 
     // Method to deposit
     public boolean deposit(double amount){
-        if(amount > 0){
+        if(amount > 0 &&  Double.isFinite(amount)){
             // Add to the balance
             this.balance += amount;
 
@@ -55,6 +58,6 @@ public class BankAccount {
 
     // Method to return transactionsHistory
     public List<Transaction> getTransactionHistory() {
-        return transactionHistory;
+        return List.copyOf(transactionHistory);
     }
 }
