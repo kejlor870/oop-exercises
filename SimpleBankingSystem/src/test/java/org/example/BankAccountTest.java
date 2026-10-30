@@ -264,6 +264,8 @@ public class BankAccountTest {
 
         // Assert
         assertFalse(result);
+        assertEquals(200.0, account.getBalance());
+        assertEquals(0.0, account2.getBalance());
         assertEquals(1, historyAcc.size()); // 1 - deposit, none transfer_out
         assertEquals(0, historyAcc2.size()); // 0 - transactions, none deposit/transfer_in
     }
@@ -282,6 +284,8 @@ public class BankAccountTest {
 
         // Assert
         assertFalse(result);
+        assertEquals(200.0, account.getBalance());
+        assertEquals(0.0, account2.getBalance());
         assertEquals(1, historyAcc.size()); // 1 - deposit, none transfer_out
         assertEquals(0, historyAcc2.size()); // 0 - transactions, none deposit/transfer_in
     }
@@ -298,6 +302,7 @@ public class BankAccountTest {
 
         // Assert
         assertFalse(result);
+        assertEquals(200.0, account.getBalance());
         assertEquals(1, historyAcc.size()); // 1 - deposit, none transfer_out
     }
 
