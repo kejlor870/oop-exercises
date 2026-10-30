@@ -233,4 +233,95 @@ public class BankAccountTest {
         assertInstanceOf(LocalDateTime.class, transactionTime);
     }
 
+    // ############## Transfer tests ##############
+
+    @Test
+    void testTransferFromAtoB(){
+        // Arange
+        BankAccount account2 = new BankAccount("Ola");
+        account.deposit(200.0);
+
+        // Act
+        boolean result = account.transferTo(account2, 100.0);
+
+        // Assert
+        assertTrue(result);
+        assertEquals(100.0, account.getBalance());
+        assertEquals(100.0, account2.getBalance());
+    }
+
+    @Test
+    void testTransferMoreThanBalance(){
+        // Arange
+        BankAccount account2 = new BankAccount("Ola");
+        account.deposit(200.0);
+
+        // Act
+        boolean result = account.transferTo(account2, 300.0);
+
+        List<Transaction> historyAcc = account.getTransactionHistory();
+        List<Transaction> historyAcc2 = account2.getTransactionHistory();
+
+        // Assert
+        assertFalse(result);
+        assertEquals(1, historyAcc.size()); // 1 - deposit, none transfer_out
+        assertEquals(0, historyAcc2.size()); // 0 - transactions, none deposit/transfer_in
+    }
+
+    @Test
+    void testTransferNegativeAmount(){
+        // Arange
+        BankAccount account2 = new BankAccount("Ola");
+        account.deposit(200.0);
+
+        // Act
+        boolean result = account.transferTo(account2, -100.0);
+
+        List<Transaction> historyAcc = account.getTransactionHistory();
+        List<Transaction> historyAcc2 = account2.getTransactionHistory();
+
+        // Assert
+        assertFalse(result);
+        assertEquals(1, historyAcc.size()); // 1 - deposit, none transfer_out
+        assertEquals(0, historyAcc2.size()); // 0 - transactions, none deposit/transfer_in
+    }
+
+    @Test
+    void testTransferToNull(){
+        // Arange
+        account.deposit(200.0);
+
+        // Act
+        boolean result = account.transferTo(null, 100.0);
+
+        List<Transaction> historyAcc = account.getTransactionHistory();
+
+        // Assert
+        assertFalse(result);
+        assertEquals(1, historyAcc.size()); // 1 - deposit, none transfer_out
+    }
+
+    @Test
+    void testTransferSavesToHistory(){
+        // Arange
+        BankAccount account2 = new BankAccount("Ola");
+        account.deposit(200.0);
+
+        // Act
+        boolean result = account.transferTo(account2, 100.0);
+
+        List<Transaction> historyAcc = account.getTransactionHistory();
+        List<Transaction> historyAcc2 = account2.getTransactionHistory();
+
+        Transaction transferOutTransaction = historyAcc.get(1);
+        Transaction transferInTransaction = historyAcc2.getFirst();
+
+        // Assert
+        assertTrue(result);
+        assertEquals(2, historyAcc.size()); // 1 - deposit, none transfer_out
+        assertEquals(1, historyAcc2.size()); // 0 - transactions, none deposit/transfer_in
+        assertEquals(TransactionType.TRANSFER_OUT, transferOutTransaction.getType());
+        assertEquals(TransactionType.TRANSFER_IN, transferInTransaction.getType());
+    }
+
 }

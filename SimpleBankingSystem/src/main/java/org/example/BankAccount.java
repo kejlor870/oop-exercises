@@ -60,4 +60,22 @@ public class BankAccount {
     public List<Transaction> getTransactionHistory() {
         return List.copyOf(transactionHistory);
     }
+
+    // Method to transfer money from account to another account
+    public boolean transferTo(BankAccount target, double amount){
+        // Validation
+        if(target == null) return false;
+        if(amount < 0.0 || !Double.isFinite(amount)) return false;
+        if(this.balance < amount) return false;
+
+        // Transfer out
+        this.balance -= amount;
+        this.transactionHistory.add(new Transaction(TransactionType.TRANSFER_OUT, amount));
+
+        // Transfer in
+        target.balance += amount;
+        target.transactionHistory.add(new Transaction(TransactionType.TRANSFER_IN, amount));
+
+        return true;
+    }
 }

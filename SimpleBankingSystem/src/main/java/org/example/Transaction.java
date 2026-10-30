@@ -8,7 +8,7 @@ public class Transaction {
     private final LocalDateTime time;
 
     public Transaction(TransactionType type, double amount){
-        if(type == null && Double.isFinite(amount)){
+        if(type == null || !Double.isFinite(amount)){
             throw new IllegalArgumentException("Wrong type or amount");
         }
 
