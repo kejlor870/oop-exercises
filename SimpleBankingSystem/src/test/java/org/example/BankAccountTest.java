@@ -118,6 +118,30 @@ public class BankAccountTest {
         );
     }
 
+    @Test
+    void testRejectDepositZero(){
+        // Arange
+        double depositAmount = 0.0;
+
+        // Act
+        boolean result = account.deposit(depositAmount);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testRejectWithdrawZero(){
+        // Arange
+        double withdrawAmount = 0;
+
+        // Act
+        boolean result = account.withdraw(withdrawAmount);
+
+        // Assert
+        assertFalse(result);
+    }
+
     // ############## Transactions history tests ##############
 
     @Test
@@ -153,6 +177,43 @@ public class BankAccountTest {
         assertEquals(2, history.size());
         assertEquals(TransactionType.WITHDRAW, secondTransaction.getType());
         assertEquals(50.0, secondTransaction.getAmount(), 0.001);
+    }
+
+    @Test
+    void testNewAccountHaveEmptyTransactionHistory(){
+        // Arange
+
+        // Act
+        List<Transaction> history = account.getTransactionHistory();
+
+        // Assert
+        assertEquals(0, history.size());
+    }
+
+    @Test
+    void testHistoryUnchangedAfterFailDeposit(){
+        // Arange
+        double amountToDeposit = -10.0;
+        account.deposit(amountToDeposit);
+
+        // Act
+        List<Transaction> history = account.getTransactionHistory();
+
+        // Assert
+        assertEquals(0, history.size());
+    }
+
+    @Test
+    void testHistoryUnchangedAfterFailWithdrawal(){
+        // Arange
+        double amountToWithdraw = -10.0;
+        account.deposit(amountToWithdraw);
+
+        // Act
+        List<Transaction> history = account.getTransactionHistory();
+
+        // Assert
+        assertEquals(0, history.size());
     }
 
 }
