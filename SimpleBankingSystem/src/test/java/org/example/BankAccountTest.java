@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -214,6 +215,22 @@ public class BankAccountTest {
 
         // Assert
         assertEquals(0, history.size());
+    }
+
+    @Test
+    void testTransactionTime(){
+        // Arange
+        double depositAmount = 50.0;
+        account.deposit(depositAmount);
+
+        // Act
+        List<Transaction> history = account.getTransactionHistory();
+        Transaction depositTransaction = history.getFirst();
+
+        LocalDateTime transactionTime = depositTransaction.getTime();
+
+        // Assert
+        assertInstanceOf(LocalDateTime.class, transactionTime);
     }
 
 }
