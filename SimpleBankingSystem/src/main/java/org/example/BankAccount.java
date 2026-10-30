@@ -65,8 +65,9 @@ public class BankAccount {
     public boolean transferTo(BankAccount target, double amount){
         // Validation
         if(target == null) return false;
-        if(amount < 0.0 || !Double.isFinite(amount)) return false;
+        if(amount <= 0.0 || !Double.isFinite(amount)) return false;
         if(this.balance < amount) return false;
+        if(target == this) return false;
 
         // Transfer out
         this.balance -= amount;

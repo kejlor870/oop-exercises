@@ -318,10 +318,25 @@ public class BankAccountTest {
 
         // Assert
         assertTrue(result);
-        assertEquals(2, historyAcc.size()); // 1 - deposit, none transfer_out
+        assertEquals(2, historyAcc.size()); // 1 - deposit, 2 - transfer_out
         assertEquals(1, historyAcc2.size()); // 0 - transactions, none deposit/transfer_in
         assertEquals(TransactionType.TRANSFER_OUT, transferOutTransaction.getType());
         assertEquals(TransactionType.TRANSFER_IN, transferInTransaction.getType());
+    }
+
+    @Test
+    void testTransferToTheSameAcc(){
+        // Arange
+        account.deposit(200.0);
+
+        // Act
+        boolean result = account.transferTo(account, 100.0);
+
+        List<Transaction> historyAcc = account.getTransactionHistory();
+
+        // Assert
+        assertFalse(result);
+        assertEquals(1, historyAcc.size()); // 1 - deposit, none transfer_out
     }
 
 }
