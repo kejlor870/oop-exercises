@@ -99,4 +99,29 @@ public class BankingServiceTest {
         assertEquals(1, bankAccountList.size());
     }
 
+    @Test
+    void testBankingServiceFindAccountByIdReturnsCorrectAccount(){
+        // Arange
+        BankAccount newAccount = bankingService.createAccount("Jan");
+        String newAccountId = newAccount.getUniqueID();
+
+        // Act
+        BankAccount searchedAccount = bankingService.findAccountById(newAccountId);
+
+        // Assert
+        assertNotNull(searchedAccount);
+        assertEquals(newAccount, searchedAccount);
+    }
+
+    @Test
+    void testBankingServiceFindAccountByIdThrowsExceptionWhenNotFound(){
+        // Arange
+        BankAccount newAccount = bankingService.createAccount("Jan");
+
+        // Act & Assert
+        assertThrows(RuntimeException.class, () -> {
+            bankingService.findAccountById("not-existed-id-1234");
+        });
+    }
+
 }

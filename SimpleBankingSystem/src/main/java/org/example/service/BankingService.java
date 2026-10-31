@@ -4,6 +4,7 @@ import org.example.model.BankAccount;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BankingService {
     private final List<BankAccount> bankAccountList = new ArrayList<>();
@@ -26,4 +27,15 @@ public class BankingService {
     public List<BankAccount> getBankAccountList() {
         return List.copyOf(bankAccountList);
     }
+
+    public BankAccount findAccountById(String accountId){
+        for(BankAccount account : bankAccountList){
+            if(Objects.equals(account.getUniqueID(), accountId)){
+                return account;
+            }
+        }
+
+        throw new RuntimeException("Not found account with ID: " +  accountId);
+    }
+
 }
