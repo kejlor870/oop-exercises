@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.model.BankAccount;
+import org.example.model.Transaction;
+import org.example.model.TransactionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,11 @@
-package org.example;
+package org.example.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class BankAccount {
+    private final String uniqueID; // ex. f81d4fae-7dec-11d0-a765-00a0c91e6bf6
     private final String owner;
     private double balance = 0;
     private final List<Transaction> transactionHistory = new ArrayList<>();
@@ -13,7 +15,13 @@ public class BankAccount {
             throw new IllegalArgumentException("Owner name cannot be null or blank");
         }
 
+        this.uniqueID = UUID.randomUUID().toString(); // ex. f81d4fae-7dec-11d0-a765-00a0c91e6bf6
         this.owner = owner;
+    }
+
+    // Method to get account uniqueID
+    public String getUniqueID() {
+        return uniqueID;
     }
 
     // Method to get owner name
