@@ -34,7 +34,7 @@ public class BankingServiceTest {
         String blankName = "  ";
 
         // Act & Assert
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             bankingService.createAccount(blankName);
         });
     }
@@ -78,9 +78,10 @@ public class BankingServiceTest {
         // Arange
         BankAccount account1 = bankingService.createAccount("Kasia");
         account1.deposit(200.0);
+        BankAccount account2 = null;
 
         // Act
-        boolean result = bankingService.transfer(account1, null, 0.0);
+        boolean result = bankingService.transfer(account1, account2, 10.0);
 
         // Assert
         assertFalse(result);
@@ -109,8 +110,7 @@ public class BankingServiceTest {
         BankAccount searchedAccount = bankingService.findAccountById(newAccountId);
 
         // Assert
-        assertNotNull(searchedAccount);
-        assertEquals(newAccount, searchedAccount);
+        assertSame(newAccount, searchedAccount);
     }
 
     @Test
