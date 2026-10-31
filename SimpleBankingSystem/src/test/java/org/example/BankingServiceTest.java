@@ -5,6 +5,8 @@ import org.example.service.BankingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BankingServiceTest {
@@ -83,6 +85,18 @@ public class BankingServiceTest {
         // Assert
         assertFalse(result);
         assertEquals(200.0, account1.getBalance(), 0.001);
+    }
+
+    @Test
+    void testBankingServiceAddsAccountToList(){
+        // Arange
+        bankingService.createAccount("Jan");
+
+        // Act
+        List<BankAccount> bankAccountList = bankingService.getBankAccountList();
+
+        // Assert
+        assertEquals(1, bankAccountList.size());
     }
 
 }
