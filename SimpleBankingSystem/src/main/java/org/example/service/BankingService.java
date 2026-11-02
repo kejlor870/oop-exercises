@@ -21,6 +21,28 @@ public class BankingService {
     public boolean transfer(BankAccount account, BankAccount targetAccount, double amount){
         if(account == null || targetAccount == null) return false;
 
+        // Checking if provided accounts are in BankingService bankAccountList
+        boolean sourceAccountFound = false;
+        boolean targetAccountFound = false;
+
+        for(BankAccount savedBankAccount : this.bankAccountList){
+            if(account == savedBankAccount){
+                sourceAccountFound = true;
+            }
+
+            if(targetAccount == savedBankAccount){
+                targetAccountFound = true;
+            }
+
+            if(sourceAccountFound && targetAccountFound){
+                break;
+            }
+        }
+
+        // Return false if any account are not in bankAccountList
+        if(!sourceAccountFound || !targetAccountFound) return false;
+
+        // Do transfer if provided accounts are in list and return true/false if success
         return account.transferTo(targetAccount, amount);
     }
 

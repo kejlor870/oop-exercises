@@ -124,4 +124,38 @@ public class BankingServiceTest {
         });
     }
 
+    @Test
+    void testBankingServiceTransferToAccountNotInList(){
+        // Arange
+        BankAccount localAccount = bankingService.createAccount("Jan");
+        localAccount.deposit(200.0);
+
+        BankAccount externalAccount = new BankAccount("Olaf");
+
+        // Act
+        boolean result = bankingService.transfer(localAccount, externalAccount, 100.0);
+
+        // Assert
+        assertFalse(result);
+        assertEquals(200.0, localAccount.getBalance(), 0.001);
+        assertEquals(0.0, externalAccount.getBalance(), 0.001);
+    }
+
+    @Test
+    void testBankingServiceTransferFromAccountNotInList() {
+        // Arrange
+        BankAccount externalAccount = new BankAccount("Olaf");
+        externalAccount.deposit(200.0);
+
+        BankAccount localAccount = bankingService.createAccount("Jan");
+
+        // Act
+        boolean result = bankingService.transfer(externalAccount, localAccount, 100.0);
+
+        // Assert
+        assertFalse(result);
+        assertEquals(200.0, externalAccount.getBalance(), 0.001);
+        assertEquals(0.0, localAccount.getBalance(), 0.001);
+    }
+
 }
