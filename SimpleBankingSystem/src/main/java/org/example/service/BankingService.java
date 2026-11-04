@@ -2,6 +2,8 @@ package org.example.service;
 
 import org.example.model.BankAccount;
 import org.example.model.BasicAccount;
+import org.example.model.PremiumAccount;
+import org.example.model.SavingsAccount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,22 @@ public class BankingService {
         BankAccount newAccount = new BasicAccount(owner);
 
         // Add newAccount to the list of bank accounts
+        bankAccountList.add(newAccount);
+
+        return newAccount;
+    }
+
+    public SavingsAccount createSavingsAccount(String owner, double interestRate){
+        SavingsAccount newAccount = new SavingsAccount(owner, interestRate);
+
+        bankAccountList.add(newAccount);
+
+        return newAccount;
+    }
+
+    public PremiumAccount createPremiumAccount(String owner){
+        PremiumAccount newAccount = new PremiumAccount(owner);
+
         bankAccountList.add(newAccount);
 
         return newAccount;
