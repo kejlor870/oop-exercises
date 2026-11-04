@@ -36,17 +36,7 @@ public abstract class BankAccount {
 
     // Method to deposit
     public boolean deposit(double amount){
-        if(amount > 0 &&  Double.isFinite(amount)){
-            // Add to the balance
-            this.balance += amount;
-
-            // Add new transaction to history
-            this.transactionHistory.add(new Transaction(TransactionType.DEPOSIT, amount));
-
-            return true;
-        }
-
-        return false;
+        return credit(amount, TransactionType.DEPOSIT);
     }
 
     // Method to withdraw
@@ -95,4 +85,18 @@ public abstract class BankAccount {
 
     // Allow to set negative balance for special type accounts
     protected abstract boolean isBalanceAllowed(double proposedBalance);
+
+    // Method to add credit to balance and history, deposit / interest
+    protected final boolean credit(double amount, TransactionType type){
+        if(amount <= 0 || !Double.isFinite(amount) || type == null) return false;
+
+        double newBalance = this.balance + amount;
+
+        if(!Double.isFinite(newBalance) || !isBalanceAllowed(newBalance)) return false;
+
+        this.balance = newBalance;
+        transactionHistory.add(new Transaction(type, amount));
+
+        return true;
+    }
 }
