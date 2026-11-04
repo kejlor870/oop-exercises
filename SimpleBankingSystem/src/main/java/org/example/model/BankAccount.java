@@ -69,8 +69,13 @@ public abstract class BankAccount {
         // Validation
         if(target == null) return false;
         if(amount <= 0.0 || !Double.isFinite(amount)) return false;
-        if(this.balance < amount) return false;
         if(target == this) return false;
+
+        double newSourcebalance = this.balance - amount;
+        double newTargetBalance = target.balance + amount;
+
+        if(!Double.isFinite(newSourcebalance) || !Double.isFinite(newTargetBalance)) return false;
+        if(!this.isBalanceAllowed(newSourcebalance) || !target.isBalanceAllowed(newTargetBalance)) return false;
 
         // Transfer out
         this.balance -= amount;
