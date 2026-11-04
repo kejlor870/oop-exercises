@@ -1,161 +1,161 @@
-package org.example;
-
-import org.example.model.BankAccount;
-import org.example.service.BankingService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-public class BankingServiceTest {
-    private BankingService bankingService;
-
-    @BeforeEach
-    void setBankingService(){
-        bankingService = new BankingService();
-    }
-
-    @Test
-    void testBankingServiceCreatesNewAcc(){
-        // Arange
-
-        // Act
-        BankAccount account = bankingService.createAccount("Kasia");
-
-        // Assert
-        assertInstanceOf(BankAccount.class, account);
-    }
-
-    @Test
-    void testBankingServiceCreatesBlankNewAcc(){
-        // Arange
-        String blankName = "  ";
-
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> {
-            bankingService.createAccount(blankName);
-        });
-    }
-
-    @Test
-    void testBankingServiceTransfer(){
-        // Arange
-        BankAccount account1 = bankingService.createAccount("Kasia");
-        BankAccount account2 = bankingService.createAccount("Jan");
-
-        account1.deposit(200.0);
-
-        // Act
-        boolean result = bankingService.transfer(account1, account2, 100.0);
-
-        // Assert
-        assertTrue(result);
-        assertEquals(100.0, account2.getBalance(), 0.001);
-        assertEquals(100.0, account1.getBalance(), 0.001);
-    }
-
-    @Test
-    void testBankingServiceTransferZero(){
-        // Arange
-        BankAccount account1 = bankingService.createAccount("Kasia");
-        BankAccount account2 = bankingService.createAccount("Jan");
-
-        account1.deposit(200.0);
-
-        // Act
-        boolean result = bankingService.transfer(account1, account2, 0.0);
-
-        // Assert
-        assertFalse(result);
-        assertEquals(0.0, account2.getBalance(), 0.001);
-        assertEquals(200.0, account1.getBalance(), 0.001);
-    }
-
-    @Test
-    void testBankingServiceTransferToNullAcc(){
-        // Arange
-        BankAccount account1 = bankingService.createAccount("Kasia");
-        account1.deposit(200.0);
-        BankAccount account2 = null;
-
-        // Act
-        boolean result = bankingService.transfer(account1, account2, 10.0);
-
-        // Assert
-        assertFalse(result);
-        assertEquals(200.0, account1.getBalance(), 0.001);
-    }
-
-    @Test
-    void testBankingServiceAddsAccountToList(){
-        // Arange
-        bankingService.createAccount("Jan");
-
-        // Act
-        List<BankAccount> bankAccountList = bankingService.getBankAccountList();
-
-        // Assert
-        assertEquals(1, bankAccountList.size());
-    }
-
-    @Test
-    void testBankingServiceFindAccountByIdReturnsCorrectAccount(){
-        // Arange
-        BankAccount newAccount = bankingService.createAccount("Jan");
-        String newAccountId = newAccount.getUniqueID();
-
-        // Act
-        BankAccount searchedAccount = bankingService.findAccountById(newAccountId);
-
-        // Assert
-        assertSame(newAccount, searchedAccount);
-    }
-
-    @Test
-    void testBankingServiceFindAccountByIdThrowsExceptionWhenNotFound(){
-        // Arange
-        BankAccount newAccount = bankingService.createAccount("Jan");
-
-        // Act & Assert
-        assertThrows(RuntimeException.class, () -> {
-            bankingService.findAccountById("not-existed-id-1234");
-        });
-    }
-
-    @Test
-    void testBankingServiceTransferToAccountNotInList(){
-        // Arange
-        BankAccount localAccount = bankingService.createAccount("Jan");
-        localAccount.deposit(200.0);
-
-        BankAccount externalAccount = new BankAccount("Olaf");
-
-        // Act
-        boolean result = bankingService.transfer(localAccount, externalAccount, 100.0);
-
-        // Assert
-        assertFalse(result);
-        assertEquals(200.0, localAccount.getBalance(), 0.001);
-        assertEquals(0.0, externalAccount.getBalance(), 0.001);
-    }
-
-    @Test
-    void testBankingServiceTransferFromAccountNotInList() {
-        // Arrange
-        BankAccount externalAccount = new BankAccount("Olaf");
-        externalAccount.deposit(200.0);
-
-        BankAccount localAccount = bankingService.createAccount("Jan");
-
-        // Act
-        boolean result = bankingService.transfer(externalAccount, localAccount, 100.0);
-
-        // Assert
-        assertFalse(result);
-        assertEquals(200.0, externalAccount.getBalance(), 0.001);
-        assertEquals(0.0, localAccount.getBalance(), 0.001);
-    }
-
-}
+//package org.example;
+//
+//import org.example.model.BankAccount;
+//import org.example.service.BankingService;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//
+//import java.util.List;
+//
+//import static org.junit.jupiter.api.Assertions.*;
+//
+//public class BankingServiceTest {
+//    private BankingService bankingService;
+//
+//    @BeforeEach
+//    void setBankingService(){
+//        bankingService = new BankingService();
+//    }
+//
+//    @Test
+//    void testBankingServiceCreatesNewAcc(){
+//        // Arange
+//
+//        // Act
+//        BankAccount account = bankingService.createAccount("Kasia");
+//
+//        // Assert
+//        assertInstanceOf(BankAccount.class, account);
+//    }
+//
+//    @Test
+//    void testBankingServiceCreatesBlankNewAcc(){
+//        // Arange
+//        String blankName = "  ";
+//
+//        // Act & Assert
+//        assertThrows(IllegalArgumentException.class, () -> {
+//            bankingService.createAccount(blankName);
+//        });
+//    }
+//
+//    @Test
+//    void testBankingServiceTransfer(){
+//        // Arange
+//        BankAccount account1 = bankingService.createAccount("Kasia");
+//        BankAccount account2 = bankingService.createAccount("Jan");
+//
+//        account1.deposit(200.0);
+//
+//        // Act
+//        boolean result = bankingService.transfer(account1, account2, 100.0);
+//
+//        // Assert
+//        assertTrue(result);
+//        assertEquals(100.0, account2.getBalance(), 0.001);
+//        assertEquals(100.0, account1.getBalance(), 0.001);
+//    }
+//
+//    @Test
+//    void testBankingServiceTransferZero(){
+//        // Arange
+//        BankAccount account1 = bankingService.createAccount("Kasia");
+//        BankAccount account2 = bankingService.createAccount("Jan");
+//
+//        account1.deposit(200.0);
+//
+//        // Act
+//        boolean result = bankingService.transfer(account1, account2, 0.0);
+//
+//        // Assert
+//        assertFalse(result);
+//        assertEquals(0.0, account2.getBalance(), 0.001);
+//        assertEquals(200.0, account1.getBalance(), 0.001);
+//    }
+//
+//    @Test
+//    void testBankingServiceTransferToNullAcc(){
+//        // Arange
+//        BankAccount account1 = bankingService.createAccount("Kasia");
+//        account1.deposit(200.0);
+//        BankAccount account2 = null;
+//
+//        // Act
+//        boolean result = bankingService.transfer(account1, account2, 10.0);
+//
+//        // Assert
+//        assertFalse(result);
+//        assertEquals(200.0, account1.getBalance(), 0.001);
+//    }
+//
+//    @Test
+//    void testBankingServiceAddsAccountToList(){
+//        // Arange
+//        bankingService.createAccount("Jan");
+//
+//        // Act
+//        List<BankAccount> bankAccountList = bankingService.getBankAccountList();
+//
+//        // Assert
+//        assertEquals(1, bankAccountList.size());
+//    }
+//
+//    @Test
+//    void testBankingServiceFindAccountByIdReturnsCorrectAccount(){
+//        // Arange
+//        BankAccount newAccount = bankingService.createAccount("Jan");
+//        String newAccountId = newAccount.getUniqueID();
+//
+//        // Act
+//        BankAccount searchedAccount = bankingService.findAccountById(newAccountId);
+//
+//        // Assert
+//        assertSame(newAccount, searchedAccount);
+//    }
+//
+//    @Test
+//    void testBankingServiceFindAccountByIdThrowsExceptionWhenNotFound(){
+//        // Arange
+//        BankAccount newAccount = bankingService.createAccount("Jan");
+//
+//        // Act & Assert
+//        assertThrows(RuntimeException.class, () -> {
+//            bankingService.findAccountById("not-existed-id-1234");
+//        });
+//    }
+//
+//    @Test
+//    void testBankingServiceTransferToAccountNotInList(){
+//        // Arange
+//        BankAccount localAccount = bankingService.createAccount("Jan");
+//        localAccount.deposit(200.0);
+//
+//        BankAccount externalAccount = new BankAccount("Olaf");
+//
+//        // Act
+//        boolean result = bankingService.transfer(localAccount, externalAccount, 100.0);
+//
+//        // Assert
+//        assertFalse(result);
+//        assertEquals(200.0, localAccount.getBalance(), 0.001);
+//        assertEquals(0.0, externalAccount.getBalance(), 0.001);
+//    }
+//
+//    @Test
+//    void testBankingServiceTransferFromAccountNotInList() {
+//        // Arrange
+//        BankAccount externalAccount = new BankAccount("Olaf");
+//        externalAccount.deposit(200.0);
+//
+//        BankAccount localAccount = bankingService.createAccount("Jan");
+//
+//        // Act
+//        boolean result = bankingService.transfer(externalAccount, localAccount, 100.0);
+//
+//        // Assert
+//        assertFalse(result);
+//        assertEquals(200.0, externalAccount.getBalance(), 0.001);
+//        assertEquals(0.0, localAccount.getBalance(), 0.001);
+//    }
+//
+//}

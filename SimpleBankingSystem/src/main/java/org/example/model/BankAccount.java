@@ -41,7 +41,7 @@ public abstract class BankAccount {
 
     // Method to withdraw
     public boolean withdraw(double amount){
-        if(amount <= getBalance() && amount > 0){
+        if(amount > 0){
             // Deduction form the balance
             double newBalance = this.balance - amount;
 
