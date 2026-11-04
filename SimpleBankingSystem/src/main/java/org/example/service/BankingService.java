@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.model.BankAccount;
+import org.example.model.BasicAccount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ public class BankingService {
     private final List<BankAccount> bankAccountList = new ArrayList<>();
 
     public BankAccount createAccount(String owner){
-        BankAccount newAccount = new BankAccount(owner);
+        BankAccount newAccount = new BasicAccount(owner);
 
         // Add newAccount to the list of bank accounts
         bankAccountList.add(newAccount);

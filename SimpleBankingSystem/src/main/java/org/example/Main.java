@@ -1,11 +1,12 @@
 package org.example;
 
 import org.example.model.BankAccount;
+import org.example.model.BasicAccount;
 
 public class Main {
     public static void main(String[] args) {
 
-        BankAccount account = new BankAccount("Jan");
+        BankAccount account = new BasicAccount("Jan");
 
         account.deposit(203.3);
         account.withdraw(50.0);

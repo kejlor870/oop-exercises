@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class BankAccount {
+public abstract class BankAccount {
     private final String uniqueID; // ex. f81d4fae-7dec-11d0-a765-00a0c91e6bf6
     private final String owner;
     private double balance = 0;
@@ -53,7 +53,12 @@ public class BankAccount {
     public boolean withdraw(double amount){
         if(amount <= getBalance() && amount > 0){
             // Deduction form the balance
-            this.balance -= amount;
+            double newBalance = this.balance - amount;
+
+            // Validate for incorrect balance
+            if(!Double.isFinite(newBalance) || !isBalanceAllowed(newBalance)) return false;
+
+            this.balance = newBalance;
 
             // Add new transaction to history
             this.transactionHistory.add(new Transaction(TransactionType.WITHDRAW, amount));
@@ -87,4 +92,7 @@ public class BankAccount {
 
         return true;
     }
+
+    // Allow to set negative balance for special type accounts
+    protected abstract boolean isBalanceAllowed(double proposedBalance);
 }
