@@ -110,13 +110,15 @@ public class AccountTypesTest {
     void testPremiumAccountRespectTransferLimit(){
         // Arange
         BankAccount premiumAccount = bankingService.createPremiumAccount("Jan");
+        BankAccount basicAccount = bankingService.createAccount("Ola");
         premiumAccount.deposit(100.0);
 
         // Act
-        boolean result = premiumAccount.withdraw(700.0);
+        boolean result = premiumAccount.transferTo(basicAccount, 700.0);
 
         // Assert
         assertTrue(result);
         assertEquals(-600.0, premiumAccount.getBalance());
+        assertEquals(700, basicAccount.getBalance());
     }
 }
