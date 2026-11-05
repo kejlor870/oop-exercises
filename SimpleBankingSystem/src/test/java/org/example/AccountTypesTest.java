@@ -122,4 +122,32 @@ public class AccountTypesTest {
         assertEquals(-600.0, premiumAccount.getBalance());
         assertEquals(700, basicAccount.getBalance());
     }
+
+    @Test
+    void testCreatesBasicAccount() {
+        BankAccount account = bankingService.createAccount(AccountType.BASIC, "Jan");
+
+        assertInstanceOf(BasicAccount.class, account);
+    }
+
+    @Test
+    void testCreatesSavingsAccount() {
+        BankAccount account = bankingService.createAccount(AccountType.SAVINGS, "Jan", 0.01);
+
+        assertInstanceOf(SavingsAccount.class, account);
+    }
+
+    @Test
+    void testCreatesPremiumAccount() {
+        BankAccount account = bankingService.createAccount(AccountType.PREMIUM, "Jan");
+
+        assertInstanceOf(PremiumAccount.class, account);
+    }
+
+    @Test
+    void testRejectsNullAccountType() {
+        assertThrows(IllegalArgumentException.class, () ->
+                bankingService.createAccount(null, "Jan", 0.05)
+        );
+    }
 }
