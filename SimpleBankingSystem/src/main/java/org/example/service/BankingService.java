@@ -1,5 +1,7 @@
 package org.example.service;
 
+import org.example.factory.AccountFactory;
+import org.example.factory.AccountType;
 import org.example.model.BankAccount;
 import org.example.model.BasicAccount;
 import org.example.model.PremiumAccount;
@@ -12,8 +14,8 @@ import java.util.Objects;
 public class BankingService {
     private final List<BankAccount> bankAccountList = new ArrayList<>();
 
-    public BankAccount createAccount(String owner){
-        BankAccount newAccount = new BasicAccount(owner);
+    public BankAccount createAccount(AccountType type, String owner){
+        BankAccount newAccount = AccountFactory.createAccount(type, owner);
 
         // Add newAccount to the list of bank accounts
         bankAccountList.add(newAccount);
@@ -21,17 +23,10 @@ public class BankingService {
         return newAccount;
     }
 
-    public SavingsAccount createSavingsAccount(String owner, double interestRate){
-        SavingsAccount newAccount = new SavingsAccount(owner, interestRate);
+    public BankAccount createAccount(AccountType type, String owner, double interest){
+        BankAccount newAccount = AccountFactory.createAccount(type, owner, interest);
 
-        bankAccountList.add(newAccount);
-
-        return newAccount;
-    }
-
-    public PremiumAccount createPremiumAccount(String owner){
-        PremiumAccount newAccount = new PremiumAccount(owner);
-
+        // Add newAccount to the list of bank accounts
         bankAccountList.add(newAccount);
 
         return newAccount;

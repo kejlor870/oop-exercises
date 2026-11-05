@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.factory.AccountType;
 import org.example.model.*;
 import org.example.service.BankingService;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ public class AccountTypesTest {
     @Test
     void testBasicAccountNotAllowsDebt(){
         // Arange
-        BankAccount basicAccount = bankingService.createAccount("Jan");
+        BankAccount basicAccount = bankingService.createAccount(AccountType.BASIC, "Jan");
         basicAccount.deposit(100.0);
 
         // Act
@@ -36,7 +37,7 @@ public class AccountTypesTest {
     @Test
     void testSavingsAccountInterest(){
         // Arange
-        BankAccount savingsAccount = bankingService.createSavingsAccount("Jan", 0.05);
+        BankAccount savingsAccount = bankingService.createAccount(AccountType.SAVINGS, "Jan", 0.05);
         savingsAccount.deposit(1000.0);
 
         // Act
@@ -50,7 +51,7 @@ public class AccountTypesTest {
     @Test
     void testSavingsAccountSavesInterestInTransactionHistory(){
         // Arange
-        BankAccount savingsAccount = bankingService.createSavingsAccount("Jan", 0.05);
+        BankAccount savingsAccount = bankingService.createAccount(AccountType.SAVINGS, "Jan", 0.05);
         savingsAccount.deposit(1000.0);
 
         // Act
@@ -67,7 +68,7 @@ public class AccountTypesTest {
     @Test
     void testPremiumAccountAllowsDebt(){
         // Arange
-        BankAccount premiumAccount = bankingService.createPremiumAccount("Jan");
+        BankAccount premiumAccount = bankingService.createAccount(AccountType.PREMIUM, "Jan");
         premiumAccount.deposit(500.0);
 
         // Act
@@ -81,7 +82,7 @@ public class AccountTypesTest {
     @Test
     void testPremiumAccountRespectWithdrawLimit(){
         // Arange
-        BankAccount premiumAccount = bankingService.createPremiumAccount("Jan");
+        BankAccount premiumAccount = bankingService.createAccount(AccountType.PREMIUM, "Jan");
         premiumAccount.deposit(100.0);
 
         // Act
@@ -95,9 +96,9 @@ public class AccountTypesTest {
     @Test
     void testBankAccountHoldAllAccounts(){
         // Arange
-        BankAccount basicAccount = bankingService.createAccount("Jan");
-        BankAccount savingsAccount = bankingService.createSavingsAccount("Jan", 0.05);
-        BankAccount premiumAccount = bankingService.createPremiumAccount("Jan");
+        BankAccount basicAccount = bankingService.createAccount(AccountType.BASIC, "Jan");
+        BankAccount savingsAccount = bankingService.createAccount(AccountType.SAVINGS, "Jan", 0.05);
+        BankAccount premiumAccount = bankingService.createAccount(AccountType.PREMIUM, "Jan");
 
         // Act
         List<BankAccount> accountList = bankingService.getBankAccountList();
@@ -109,8 +110,8 @@ public class AccountTypesTest {
     @Test
     void testPremiumAccountRespectTransferLimit(){
         // Arange
-        BankAccount premiumAccount = bankingService.createPremiumAccount("Jan");
-        BankAccount basicAccount = bankingService.createAccount("Ola");
+        BankAccount premiumAccount = bankingService.createAccount(AccountType.PREMIUM, "Jan");
+        BankAccount basicAccount = bankingService.createAccount(AccountType.BASIC, "Ola");
         premiumAccount.deposit(100.0);
 
         // Act
