@@ -114,7 +114,7 @@ public class AccountTypesTest {
         premiumAccount.deposit(100.0);
 
         // Act
-        boolean result = premiumAccount.transferTo(basicAccount, 700.0);
+        boolean result = bankingService.transfer(premiumAccount, basicAccount, 700.0);
 
         // Assert
         assertTrue(result);
