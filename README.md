@@ -80,6 +80,33 @@ The application allows users to create vehicles using the **Factory Design Patte
 
 ---
 
+### 📁 05 - [SimpleBankingSystem](https://github.com/kejlor870/oop-exercises/tree/main/SimpleBankingSystem) (Java)
+
+A console-based banking application that simulates basic banking operations, including bank account creation, deposits, withdrawals, money transfers, interest calculations, and transaction history management.
+
+The application supports three types of bank accounts: **Basic**, **Savings**, and **Premium**, each with its own balance restrictions and functionality.
+
+It uses the **Factory Design Pattern** to create bank accounts and a **Service Layer** to manage accounts, retrieve accounts by their unique IDs, and validate transfers between accounts. The application also includes transaction history tracking, input validation, exception handling, and unit tests with JUnit 5.
+
+**Folder:** `SimpleBankingSystem/`
+
+#### Technologies
+
+- Java
+- Object-Oriented Programming (OOP)
+- Encapsulation, Inheritance, Polymorphism, and Abstraction
+- Abstract Classes and Interfaces
+- Factory Design Pattern
+- Service Layer architecture
+- Java Collections (`List`, `ArrayList`)
+- Enums
+- UUID for unique account identification
+- Transaction history management
+- Input validation and exception handling
+- JUnit 5 unit testing
+
+---
+
 ## 🛠 Technologies Used in This Repository
 
 - Java
@@ -88,11 +115,17 @@ The application allows users to create vehicles using the **Factory Design Patte
 - Spring Boot
 - Jackson
 - Maven
+- JUnit 5
 - Object-Oriented Programming (OOP)
+- Encapsulation, Inheritance, Polymorphism, and Abstraction
+- Abstract Classes and Interfaces
 - Factory Design Pattern
+- Service Layer architecture
 - Java Collections
-- Interfaces and enums
+- Enums and UUID
 - Exception handling and input validation
+- Transaction and account management
+- Unit testing
 - IntelliJ IDEA
 - Git and GitHub
 
@@ -103,16 +136,20 @@ The application allows users to create vehicles using the **Factory Design Patte
 The goal of this repository is to:
 
 - Practice object-oriented programming concepts:
-  - encapsulation
-  - inheritance
-  - polymorphism
-  - abstraction
-  - interfaces
+  - Encapsulation
+  - Inheritance
+  - Polymorphism
+  - Abstraction
+  - Interfaces
 - Build Java desktop applications using JavaFX
 - Build Java web applications and REST APIs using Spring Boot
 - Implement creational design patterns (Factory Pattern)
+- Practice separation of responsibilities using a Service Layer
 - Practice Java Collections and enum types
+- Implement account, vehicle, and device management systems
 - Learn exception handling and input validation
+- Practice transaction management and transaction history tracking
+- Learn unit testing with JUnit 5
 - Learn proper project structure and separation of responsibilities
 - Practice data serialization and JSON handling
 - Use Git and GitHub in practical software development workflows
