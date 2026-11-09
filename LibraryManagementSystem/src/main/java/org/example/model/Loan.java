@@ -58,6 +58,16 @@ public class Loan {
     }
 
     public void returnBook(LocalDate returnDate) {
+        if(isReturned()){
+            throw new IllegalStateException("Book has already be returned.");
+        }
+        if(returnDate == null){
+            throw new IllegalArgumentException("Return date can not be null.");
+        }
+        if(returnDate.isBefore(this.loanDate)){
+            throw new IllegalArgumentException("Return date cannot be before loan date.");
+        }
+
         this.returnDate = returnDate;
     }
 
