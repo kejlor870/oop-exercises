@@ -18,4 +18,9 @@ public class Member {
     public String getName() {
         return name;
     }
+
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
 }
