@@ -17,8 +17,9 @@ public class Main {
         tree.insert(7);
 
 
-
         tree.printTree();
+        System.out.println("--------------------");
+        tree.printInOrder();
 
     }
 }
