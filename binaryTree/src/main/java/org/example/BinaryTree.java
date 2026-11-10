@@ -13,7 +13,7 @@ public class BinaryTree {
 
         if(value < currentNode.value){
             currentNode.left = insertRecursive(currentNode.left, value);
-        } else if (value > currentNode.value) {
+        } else {
             currentNode.right = insertRecursive(currentNode.right, value);
         }
 
@@ -48,7 +48,7 @@ public class BinaryTree {
             printTreeRecursive(node.left, childPrefix, !hasRight, "L (<" + node.value + "): ");
         }
         if (node.right != null) {
-            printTreeRecursive(node.right, childPrefix, true, "P (>" + node.value + "): ");
+            printTreeRecursive(node.right, childPrefix, true, "P (>=" + node.value + "): ");
         }
     }
 
