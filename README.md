@@ -2,7 +2,7 @@
 
 Repository containing Object-Oriented Programming exercises completed as part of university coursework.
 
-Each folder represents a separate project focused on practicing Java OOP concepts, JavaFX applications, and web development.
+Each folder represents a separate project focused on practicing Java OOP concepts, JavaFX applications, web development, and fundamental data structures and algorithms.
 
 ---
 
@@ -107,6 +107,29 @@ It uses the **Factory Design Pattern** to create bank accounts and a **Service L
 
 ---
 
+### 📁 06 - [BinaryTree](https://github.com/kejlor870/oop-exercises/tree/main/binaryTree) (Java)
+
+A console-based Java application that implements a **Binary Search Tree (BST)**. The program reads integer values entered by the user, inserts them into the tree, and displays the resulting tree structure in the console.
+
+The tree is built dynamically using objects of the `Node` class. Each node stores an integer value and references to its left and right child nodes. Values smaller than the current node are inserted into the left subtree, while values greater than or equal to the current node are inserted into the right subtree. Insertion is implemented recursively.
+
+The application provides two ways to display the data: a tree-like console representation and an **in-order traversal**, which prints the values in non-decreasing order. Invalid input tokens that cannot be parsed as integers are skipped and reported to the user.
+
+**Folder:** `BinaryTree/`
+
+#### Technologies
+
+- Java
+- Object-Oriented Programming (OOP)
+- Binary Search Tree (BST)
+- Binary tree nodes and object references
+- Recursion
+- Tree traversal (in-order)
+- Console input and output (`Scanner`)
+- Input validation and exception handling (`NumberFormatException`)
+
+---
+
 ## 🛠 Technologies Used in This Repository
 
 - Java
@@ -125,7 +148,8 @@ It uses the **Factory Design Pattern** to create bank accounts and a **Service L
 - Enums and UUID
 - Exception handling and input validation
 - Transaction and account management
-- Unit testing
+- Binary Search Trees (BST)
+- Recursion and tree traversal
 - IntelliJ IDEA
 - Git and GitHub
 
@@ -147,6 +171,8 @@ The goal of this repository is to:
 - Practice separation of responsibilities using a Service Layer
 - Practice Java Collections and enum types
 - Implement account, vehicle, and device management systems
+- Implement and manipulate fundamental data structures, including binary search trees
+- Practice recursive algorithms and tree traversal
 - Learn exception handling and input validation
 - Practice transaction management and transaction history tracking
 - Learn unit testing with JUnit 5
