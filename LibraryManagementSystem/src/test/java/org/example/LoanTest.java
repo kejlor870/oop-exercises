@@ -22,8 +22,8 @@ public class LoanTest {
 
     @Test
     void testLoanCreate(){
-        LocalDate todayDate = LocalDate.now();
-        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        LocalDate todayDate = LocalDate.of(2026, 11, 13);
+        LocalDate todayPlus7Date = LocalDate.of(2026, 11, 20);
 
         Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
 
@@ -36,8 +36,8 @@ public class LoanTest {
 
     @Test
     void testNewLoanReturnDate(){
-        LocalDate todayDate = LocalDate.now();
-        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        LocalDate todayDate = LocalDate.of(2026, 11, 13);
+        LocalDate todayPlus7Date = LocalDate.of(2026, 11, 20);
 
         Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
 
@@ -47,10 +47,10 @@ public class LoanTest {
 
     @Test
     void testLoanReturnCorrect(){
-        LocalDate todayDate = LocalDate.now();
-        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        LocalDate todayDate = LocalDate.of(2026, 11, 13);
+        LocalDate todayPlus7Date = LocalDate.of(2026, 11, 20);
         Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
-        LocalDate returnDate = LocalDate.now().plusDays(3);
+        LocalDate returnDate = LocalDate.of(2026, 11, 16);
 
         newLoan.returnBook(returnDate);
 
@@ -60,11 +60,11 @@ public class LoanTest {
 
     @Test
     void testReturnBeforeLoanDate(){
-        LocalDate todayDate = LocalDate.now();
-        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        LocalDate todayDate = LocalDate.of(2026, 11, 13);
+        LocalDate todayPlus7Date = LocalDate.of(2026, 11, 20);
         Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
 
-        LocalDate returnDateBefore = LocalDate.now().minusDays(10);
+        LocalDate returnDateBefore = LocalDate.of(2026, 11, 3);
 
         assertThrows(IllegalArgumentException.class, () -> {
             newLoan.returnBook(returnDateBefore);
@@ -73,11 +73,11 @@ public class LoanTest {
 
     @Test
     void testDoubleReturn(){
-        LocalDate todayDate = LocalDate.now();
-        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        LocalDate todayDate = LocalDate.of(2026, 11, 13);
+        LocalDate todayPlus7Date = LocalDate.of(2026, 11, 20);
         Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
-        LocalDate firstReturnDate = LocalDate.now().plusDays(3);
-        LocalDate secondReturnDate = LocalDate.now().plusDays(8);
+        LocalDate firstReturnDate = LocalDate.of(2026, 11, 16);
+        LocalDate secondReturnDate = LocalDate.of(2026, 11, 21);
 
         newLoan.returnBook(firstReturnDate);
 
@@ -89,8 +89,8 @@ public class LoanTest {
 
     @Test
     void testNullReturnDate(){
-        LocalDate todayDate = LocalDate.now();
-        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        LocalDate todayDate = LocalDate.of(2026, 11, 13);
+        LocalDate todayPlus7Date = LocalDate.of(2026, 11, 20);
         Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
         LocalDate returnDate = null;
 
