@@ -70,4 +70,20 @@ public class LoanTest {
             newLoan.returnBook(returnDateBefore);
         });
     }
+
+    @Test
+    void testDoubleReturn(){
+        LocalDate todayDate = LocalDate.now();
+        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
+        LocalDate firstReturnDate = LocalDate.now().plusDays(3);
+        LocalDate secondReturnDate = LocalDate.now().plusDays(8);
+
+        newLoan.returnBook(firstReturnDate);
+
+        assertThrows(IllegalStateException.class, () -> {
+           newLoan.returnBook(secondReturnDate);
+        });
+        assertEquals(firstReturnDate, newLoan.getReturnDate());
+    }
 }
