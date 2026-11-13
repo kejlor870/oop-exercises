@@ -86,4 +86,16 @@ public class LoanTest {
         });
         assertEquals(firstReturnDate, newLoan.getReturnDate());
     }
+
+    @Test
+    void testNullReturnDate(){
+        LocalDate todayDate = LocalDate.now();
+        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
+        LocalDate returnDate = null;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            newLoan.returnBook(returnDate);
+        });
+    }
 }
