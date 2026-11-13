@@ -45,4 +45,18 @@ public class LoanTest {
         assertNull(newLoan.getReturnDate());
     }
 
+    @Test
+    void testLoanReturnCorrect(){
+        LocalDate todayDate = LocalDate.now();
+        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
+        LocalDate returnDate = LocalDate.of(2026, 11, 13);
+
+        newLoan.returnBook(returnDate);
+
+        assertEquals(returnDate, newLoan.getReturnDate());
+        assertTrue(newLoan.isReturned());
+    }
+
+
 }
