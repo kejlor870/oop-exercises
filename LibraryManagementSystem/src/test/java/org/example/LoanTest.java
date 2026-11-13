@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LoanTest {
     Book book;
@@ -33,6 +32,17 @@ public class LoanTest {
         assertEquals(todayDate, newLoan.getLoanDate());
         assertEquals(todayPlus7Date, newLoan.getDueDate());
         assertFalse(newLoan.isReturned());
+    }
+
+    @Test
+    void testNewLoanReturnDate(){
+        LocalDate todayDate = LocalDate.now();
+        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+
+        Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
+
+        assertFalse(newLoan.isReturned());
+        assertNull(newLoan.getReturnDate());
     }
 
 }
