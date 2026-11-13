@@ -50,7 +50,7 @@ public class LoanTest {
         LocalDate todayDate = LocalDate.now();
         LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
         Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
-        LocalDate returnDate = LocalDate.of(2026, 11, 13);
+        LocalDate returnDate = LocalDate.now().plusDays(3);
 
         newLoan.returnBook(returnDate);
 
@@ -58,5 +58,16 @@ public class LoanTest {
         assertTrue(newLoan.isReturned());
     }
 
+    @Test
+    void testReturnBeforeLoanDate(){
+        LocalDate todayDate = LocalDate.now();
+        LocalDate todayPlus7Date = LocalDate.now().plusDays(7);
+        Loan newLoan = new Loan(book, member, todayDate, todayPlus7Date);
 
+        LocalDate returnDateBefore = LocalDate.now().minusDays(10);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            newLoan.returnBook(returnDateBefore);
+        });
+    }
 }
