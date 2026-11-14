@@ -69,5 +69,20 @@ public class LibraryService {
         return newLoan;
     }
 
+    public boolean returnBook(Book book, LocalDate returnDate){
+        if(book == null) throw new IllegalArgumentException("Can not return null book.");
+        if(!bookList.contains(book)) throw new IllegalArgumentException("Can not return book which is not in bookList.");
+
+        // Searching in loanList for first loan where book equals provided book and loan have not return date
+        Loan searchedLoan = loanList.stream().filter(loan ->
+            loan.getLoanedBook().equals(book) && !loan.isReturned()
+        ).findFirst().orElseThrow(() ->
+                new IllegalArgumentException("Not found active loan for this book.")
+        );
+
+        searchedLoan.returnBook(returnDate);
+
+        return true;
+    }
 
 }
