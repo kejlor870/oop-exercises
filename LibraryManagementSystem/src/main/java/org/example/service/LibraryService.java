@@ -17,6 +17,7 @@ public class LibraryService {
         if(book == null){
             throw new IllegalArgumentException("Can not add book which is null.");
         }
+        if(bookList.contains(book)) return false;
 
         bookList.add(book);
 
