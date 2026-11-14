@@ -28,6 +28,7 @@ public class LibraryService {
         if(member == null){
             throw new IllegalArgumentException("Can not register member which is null.");
         }
+        if(members.contains(member)) return false;
 
         members.add(member);
 
