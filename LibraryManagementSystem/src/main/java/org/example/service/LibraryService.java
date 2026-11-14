@@ -33,5 +33,41 @@ public class LibraryService {
         return true;
     }
 
+    public Loan borrowBook(Book book, Member member, LocalDate dueDate){
+        if(!bookList.contains(book)){
+            throw new IllegalArgumentException("Can not borrow book which is not added.");
+        }
+        if(!members.contains(member)){
+            throw new IllegalArgumentException("Can not borrow to the member which is not registered.");
+        }
+
+        // Checking in loanList if there is any loan which have provided book and have don't have returned date
+        boolean isBookAvailable = loanList.stream().anyMatch(loan ->
+                loan.getLoanedBook().equals(book) && !loan.isReturned()
+        );
+
+        if(!isBookAvailable){
+            throw new IllegalStateException("The book is already borrowed.");
+        }
+
+        // Checking member active loans
+        long memberActiveLoans = loanList.stream()
+                .filter(loan -> loan.getBorrower().equals(member) && !loan.isReturned())
+                .count()
+                ;
+
+        if(memberActiveLoans >= 3){
+            throw new IllegalStateException("The member have max active loans.");
+        }
+
+        // Creating new loan
+        Loan newLoan = new Loan(book, member, LocalDate.now(), dueDate);
+
+        // Adding loan to the list
+        loanList.add(newLoan);
+
+        return newLoan;
+    }
+
 
 }
