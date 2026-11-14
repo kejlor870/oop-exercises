@@ -42,11 +42,11 @@ public class LibraryService {
         }
 
         // Checking in loanList if there is any loan which have provided book and have don't have returned date
-        boolean isBookAvailable = loanList.stream().anyMatch(loan ->
+        boolean isBookAlreadyBorrowed = loanList.stream().anyMatch(loan ->
                 loan.getLoanedBook().equals(book) && !loan.isReturned()
         );
 
-        if(!isBookAvailable){
+        if(isBookAlreadyBorrowed){
             throw new IllegalStateException("The book is already borrowed.");
         }
 
