@@ -23,5 +23,15 @@ public class LibraryService {
         return true;
     }
 
+    public boolean registerMember(Member member){
+        if(member == null){
+            throw new IllegalArgumentException("Can not register member which is null.");
+        }
+
+        members.add(member);
+
+        return true;
+    }
+
 
 }
