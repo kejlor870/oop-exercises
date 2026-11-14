@@ -13,6 +13,15 @@ public class LibraryService {
     private final List<Member> members = new ArrayList<>();
     private final List<Loan> loanList = new ArrayList<>();
 
+    public boolean addBook(Book book){
+        if(book == null){
+            throw new IllegalArgumentException("Can not add book which is null.");
+        }
+
+        bookList.add(book);
+
+        return true;
+    }
 
 
 }
